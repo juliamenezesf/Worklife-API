@@ -31,18 +31,16 @@ A API está publicada na Render:
 
 ## 🛠️ Tecnologias Utilizadas
 
-  Tecnologia                         Função
-  ---------------------------------- ------------------------------------
-  **Quarkus 3**                      Framework Java de alta performance
-  **Java 17**                        Linguagem utilizada
-  **Maven**                          Gerenciamento de dependências
-  **Oracle JDBC (ojdbc11)**          Conexão com Oracle
-  **Quarkus JDBC Oracle (Agroal)**   Pool de conexões
-  **RESTEasy Reactive**              API REST otimizada
-  **Render**                         Deploy em produção
-  **Oracle FIAP**                    Banco de dados remoto
-
-------------------------------------------------------------------------
+| Tecnologia | Função |
+|-----------|--------|
+| **Quarkus 3** | Framework Java de alta performance |
+| **Java 17** | Linguagem utilizada |
+| **Maven** | Gerenciamento de dependências |
+| **Oracle JDBC (ojdbc11)** | Conexão com Oracle |
+| **Quarkus JDBC Oracle (Agroal)** | Pool de conexões |
+| **RESTEasy Reactive** | API REST otimizada |
+| **Render** | Deploy em produção |
+| **Oracle FIAP** | Banco de dados remoto |
 
 ## 🗄️ Banco de Dados -- Oracle FIAP
 

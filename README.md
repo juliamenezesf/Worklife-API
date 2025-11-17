@@ -1,68 +1,170 @@
-# wellbeing-api
+# 🌿 Wellbeing API – Global Solution FIAP 2025
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+API desenvolvida em **Java + Quarkus** para o projeto **Global Solution**, integrando os módulos:
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+- Gestão de Usuários  
+- Tasks  
+- Mood Logs  
+- Recomendações de Pausa (Break Recommendations)
 
-## Running the application in dev mode
+A API conecta-se ao **banco Oracle da FIAP** e fornece endpoints RESTful usados tanto pelo **Front-End** quanto pela **aplicação Python**.
 
-You can run your application in dev mode that enables live coding using:
+---
 
-```shell script
-./mvnw compile quarkus:dev
-```
+## 🚀 Tecnologias Utilizadas
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+| Tecnologia | Finalidade |
+|-----------|------------|
+| **Quarkus 3** | Framework Java de alta performance e baixo consumo |
+| **Java 17** | Linguagem base |
+| **Maven** | Gerenciamento de dependências |
+| **Oracle JDBC (ojdbc11)** | Conexão com Oracle |
+| **Quarkus JDBC Oracle** | Pool de conexões (Agroal) |
+| **RESTEasy Reactive** | API REST de alta performance |
+| **Render** | Deploy em produção |
+| **Oracle FIAP** | Banco de dados utilizado pela aplicação |
 
-## Packaging and running the application
+---
 
-The application can be packaged using:
+## 🗄️ Banco de Dados – Oracle FIAP
 
-```shell script
-./mvnw package
-```
+A API conecta-se a um banco Oracle remoto (FIAP), com as tabelas:
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+- `USERS`
+- `TASKS`
+- `MOOD_LOGS`
+- `BREAK_RECOMMENDATIONS`
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+Cada DAO foi ajustado para trabalhar com:
 
-If you want to build an _über-jar_, execute the following command:
+- Nomes reais de colunas (ex: `ID_USER`, `CREATED_AT`, etc.)
+- Constraints originais do banco
+- Validação de STATUS, PRIORITY e TASK_TYPE
+- Geração de IDs no padrão Oracle: `MAX(ID) + 1`
 
-```shell script
-./mvnw package -Dquarkus.package.jar.type=uber-jar
-```
+Nenhuma tabela é criada ou alterada pela API em produção.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+---
 
-## Creating a native executable
+## 🧱 Estrutura Principal do Projeto
 
-You can create a native executable using:
+src/
+main/
+java/
+com.gs.dao/ # Acesso ao banco (Oracle)
+com.gs.model/ # Entidades da API
+com.gs.bo/ # Regras de negócio
+com.gs.resource/ # Endpoints REST
+resources/
+application.properties
+pom.xml
+mvnw / mvnw.cmd
 
-```shell script
-./mvnw package -Dnative
-```
+yaml
+Copy code
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+---
 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
+## ⚙️ Perfis de Execução
 
-You can then execute your native executable with: `./target/wellbeing-api-1.0.0-SNAPSHOT-runner`
+### 🧪 Ambiente DEV (local – H2)
+```properties
+%dev.quarkus.datasource.db-kind=h2
+%dev.quarkus.datasource.jdbc.url=jdbc:h2:mem:wellbeing
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+🚀 Ambiente PROD (Render – Oracle FIAP)
+properties
+Copy code
+%prod.quarkus.datasource.db-kind=oracle
+%prod.quarkus.datasource.jdbc.url=jdbc:oracle:thin:@${DB_HOST}:${DB_PORT}:${DB_SID}
+%prod.quarkus.datasource.username=${DB_USER}
+%prod.quarkus.datasource.password=${DB_PASSWORD}
 
-## Related Guides
+🔧 Variáveis de Ambiente (Render)
+Variável	Valor
+QUARKUS_PROFILE	prod
+DB_HOST	oracle.fiap.com.br
+DB_PORT	1521
+DB_SID	ORCL
+DB_USER	rmXXXXX
+DB_PASSWORD	******
 
-- REST Jackson ([guide](https://quarkus.io/guides/rest#json-serialisation)): Jackson serialization support for Quarkus REST. This extension is not compatible with the quarkus-resteasy extension, or any of the extensions that depend on it
-- Hibernate Validator ([guide](https://quarkus.io/guides/validation)): Validate object properties (field, getter) and method parameters for your beans (REST, CDI, Jakarta Persistence)
-- JDBC Driver - Oracle ([guide](https://quarkus.io/guides/datasource)): Connect to the Oracle database via JDBC
+🏃 Como Rodar Localmente (DEV – H2)
+1. Clonar o repositório
+bash
+Copy code
+git clone https://github.com/SEU_USUARIO/wellbeing-api.git
+cd wellbeing-api
+2. Rodar em modo DEV
+bash
+Copy code
+mvnw quarkus:dev
+A API sobe em:
+👉 http://localhost:8080
 
-## Provided Code
+🏁 Como Rodar em Produção (Oracle FIAP)
+1. Gerar o JAR
+bash
+Copy code
+mvnw clean package -DskipTests
+2. Rodar com Oracle
+bash
+Copy code
+set QUARKUS_PROFILE=prod
+set DB_HOST=oracle.fiap.com.br
+set DB_PORT=1521
+set DB_SID=ORCL
+set DB_USER=rmXXXXX
+set DB_PASSWORD=*****
+java -jar target/wellbeing-api-1.0.0-SNAPSHOT.jar
 
-### REST
+🌐 Endpoints da API
+👤 USERS
+Método	Endpoint
+GET	/v1/users
+GET	/v1/users/{id}
+POST	/v1/users
+DELETE	/v1/users/{id}
 
-Easily start your REST Web Services
+📋 TASKS
+Método	Endpoint
+GET	/v1/tasks
+GET	/v1/tasks/{id}
+GET	/v1/tasks/user/{userId}
+POST	/v1/tasks
+DELETE	/v1/tasks/{id}
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+😄 MOOD LOGS
+Método	Endpoint
+GET	/v1/mood-logs
+GET	/v1/mood-logs/{id}
+GET	/v1/mood-logs/user/{userId}
+POST	/v1/mood-logs
+DELETE	/v1/mood-logs/{id}
+
+🧘 RECOMMENDATIONS
+Método	Endpoint
+GET	/v1/recommendations
+GET	/v1/recommendations/user/{userId}
+POST	/v1/recommendations
+
+🚀 Deploy no Render
+Build Command
+bash
+Copy code
+./mvnw clean package -DskipTests
+Start Command
+bash
+Copy code
+java -jar target/wellbeing-api-1.0.0-SNAPSHOT.jar
+URL da API
+https://api-java-1-w4eg.onrender.com
+
+👥 Integrantes do Projeto
+Júlia Menezes - RM565568
+Pedro Costa - RM559932
+
+📝 Licença
+Projeto acadêmico desenvolvido para a FIAP – Global Solution 2025.
+
+🌟 Obrigado por acessar nossa API!

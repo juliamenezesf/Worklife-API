@@ -68,26 +68,26 @@ Copy code
 ## ⚙️ Perfis de Execução
 
 ### 🧪 Ambiente DEV (local – H2)
-properties
-%dev.quarkus.datasource.db-kind=h2
-%dev.quarkus.datasource.jdbc.url=jdbc:h2:mem:wellbeing
+- properties
+- %dev.quarkus.datasource.db-kind=h2
+- %dev.quarkus.datasource.jdbc.url=jdbc:h2:mem:wellbeing
 
 🚀 Ambiente PROD (Render – Oracle FIAP)
-properties
-Copy code
-%prod.quarkus.datasource.db-kind=oracle
-%prod.quarkus.datasource.jdbc.url=jdbc:oracle:thin:@${DB_HOST}:${DB_PORT}:${DB_SID}
-%prod.quarkus.datasource.username=${DB_USER}
-%prod.quarkus.datasource.password=${DB_PASSWORD}
+- properties
+- Copy code
+- %prod.quarkus.datasource.db-kind=oracle
+- %prod.quarkus.datasource.jdbc.url=jdbc:oracle:thin:@${DB_HOST}:${DB_PORT}:${DB_SID}
+- %prod.quarkus.datasource.username=${DB_USER}
+- %prod.quarkus.datasource.password=${DB_PASSWORD}
 
 🔧 Variáveis de Ambiente (Render)
-Variável	Valor
-QUARKUS_PROFILE	prod
-DB_HOST	oracle.fiap.com.br
-DB_PORT	1521
-DB_SID	ORCL
-DB_USER	rmXXXXX
-DB_PASSWORD	******
+- Variável	Valor
+- QUARKUS_PROFILE	prod
+- DB_HOST	oracle.fiap.com.br
+- DB_PORT	1521
+- DB_SID	ORCL
+- DB_USER	rmXXXXX
+- DB_PASSWORD	******
 
 🏃 Como Rodar Localmente (DEV – H2)
 1. Clonar o repositório
@@ -121,32 +121,32 @@ java -jar target/wellbeing-api-1.0.0-SNAPSHOT.jar
 🌐 Endpoints da API
 👤 USERS
 Método	Endpoint
-GET	/v1/users
-GET	/v1/users/{id}
-POST	/v1/users
-DELETE	/v1/users/{id}
+- GET	/v1/users
+- GET	/v1/users/{id}
+- POST	/v1/users
+- DELETE	/v1/users/{id}
 
 📋 TASKS
 Método	Endpoint
-GET	/v1/tasks
-GET	/v1/tasks/{id}
-GET	/v1/tasks/user/{userId}
-POST	/v1/tasks
-DELETE	/v1/tasks/{id}
+- GET	/v1/tasks
+- GET	/v1/tasks/{id}
+- GET	/v1/tasks/user/{userId}
+- POST	/v1/tasks
+- DELETE	/v1/tasks/{id}
 
 😄 MOOD LOGS
 Método	Endpoint
-GET	/v1/mood-logs
-GET	/v1/mood-logs/{id}
-GET	/v1/mood-logs/user/{userId}
-POST	/v1/mood-logs
-DELETE	/v1/mood-logs/{id}
+- GET	/v1/mood-logs
+- GET	/v1/mood-logs/{id}
+- GET	/v1/mood-logs/user/{userId}
+- POST	/v1/mood-logs
+- DELETE	/v1/mood-logs/{id}
 
 🧘 RECOMMENDATIONS
 Método	Endpoint
-GET	/v1/recommendations
-GET	/v1/recommendations/user/{userId}
-POST	/v1/recommendations
+- GET	/v1/recommendations
+- GET	/v1/recommendations/user/{userId}
+- POST	/v1/recommendations
 
 🚀 Deploy no Render
 Build Command

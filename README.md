@@ -1,4 +1,4 @@
-# 🌿 Wellbeing API – Global Solution FIAP 2025
+\# 🌿 Wellbeing API – Global Solution FIAP 2025
 
 API desenvolvida em **Java + Quarkus** para o projeto **Global Solution**, integrando os módulos:
 
@@ -147,18 +147,6 @@ Método	Endpoint
 - GET	/v1/recommendations
 - GET	/v1/recommendations/user/{userId}
 - POST	/v1/recommendations
-
-🚀 Deploy no Render
-Build Command
-bash
-Copy code
-./mvnw clean package -DskipTests
-Start Command
-bash
-Copy code
-java -jar target/wellbeing-api-1.0.0-SNAPSHOT.jar
-URL da API
-https://api-java-1-w4eg.onrender.com
 
 👥 Integrantes do Projeto
 Júlia Menezes - RM565568

@@ -210,8 +210,8 @@ java -jar target/wellbeing-api-1.0.0-SNAPSHOT.jar
 
   Nome                RM
   ------------------- ----------
-  **Júlia Menezes**   RM565568
-  **Pedro Costa**     RM559932
+  - **Júlia Menezes**   RM565568
+  - **Pedro Costa**     RM559932
 
 ------------------------------------------------------------------------
 

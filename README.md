@@ -44,7 +44,6 @@ A plataforma está publicada no Vercel:
 | **Maven** | Gerenciamento de dependências |
 | **Oracle JDBC (ojdbc11)** | Conexão com Oracle |
 | **Quarkus JDBC Oracle (Agroal)** | Pool de conexões |
-| **RESTEasy Reactive** | API REST otimizada |
 | **Render** | Deploy em produção |
 | **Oracle FIAP** | Banco de dados remoto |
 

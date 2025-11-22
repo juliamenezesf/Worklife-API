@@ -17,7 +17,7 @@ utilizados pelo **Front-End** e pela aplicação **Python** do projeto.
 
 ## 🎥 Vídeo de Apresentação
 
-➡️ **URL do vídeo:** *adicione aqui quando estiver disponível*
+➡️ **URL do vídeo:** *https://youtu.be/2R8WwfGuHkY*
 
 ------------------------------------------------------------------------
 
